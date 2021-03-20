@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://Server/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GenerickiKontrolerServer" targetNamespace="http://Server/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://Server/" elementFormDefault="unqualified" targetNamespace="http://Server/" version="1.0">
+
+  <xs:element name="prvaMetoda" type="tns:prvaMetoda"/>
+
+  <xs:element name="prvaMetodaResponse" type="tns:prvaMetodaResponse"/>
+
+  <xs:complexType name="prvaMetoda">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:transferObjekat"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transferObjekat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gdo" type="tns:korisnik"/>
+      <xs:element minOccurs="0" name="poruka" type="xs:string"/>
+      <xs:element name="signal" type="xs:boolean"/>
+      <xs:element name="currentRecord" type="xs:int"/>
+      <xs:element minOccurs="0" name="igracNaPotezu" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="korisnik">
+    <xs:complexContent>
+      <xs:extension base="tns:generalDObject">
+        <xs:sequence>
+          <xs:element name="idKorisnik" type="xs:int"/>
+          <xs:element minOccurs="0" name="korisnickoIme" type="xs:string"/>
+          <xs:element minOccurs="0" name="sifra" type="xs:string"/>
+          <xs:element minOccurs="0" name="ime" type="xs:string"/>
+          <xs:element minOccurs="0" name="prezime" type="xs:string"/>
+          <xs:element name="brojPobeda" type="xs:int"/>
+          <xs:element name="brojPoraza" type="xs:int"/>
+          <xs:element minOccurs="0" name="datumRodjenja" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="generalDObject">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="prvaMetodaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:transferObjekat"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="prvaMetoda">
+    <wsdl:part element="tns:prvaMetoda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="prvaMetodaResponse">
+    <wsdl:part element="tns:prvaMetodaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GenerickiKontrolerServer">
+    <wsdl:operation name="prvaMetoda">
+      <wsdl:input message="tns:prvaMetoda" name="prvaMetoda">
+    </wsdl:input>
+      <wsdl:output message="tns:prvaMetodaResponse" name="prvaMetodaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GenerickiKontrolerServerSoapBinding" type="tns:GenerickiKontrolerServer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="prvaMetoda">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="prvaMetoda">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="prvaMetodaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GenerickiKontrolerServer">
+    <wsdl:port binding="tns:GenerickiKontrolerServerSoapBinding" name="GenerickiKontrolerServerPort">
+      <soap:address location="http://localhost:8080/IksOksServer/GenerickiKontrolerServer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
