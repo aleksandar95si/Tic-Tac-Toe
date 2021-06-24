@@ -5,3 +5,7 @@ Serverski deo Iks-Oks igre, namenjene dvojici igrača. Softverski sistem je impl
 Kompletna dokumentacija projekta se nalazi u okviru pdf fajla pod nazivom "Софтверски процес - документација".
 
 Za klijentski deo programa klikni [ovde](https://github.com/aleksandar95si/Tic-Tac-Toe-Client). 
+
+### Konačna arhitektura projekta 
+
+![Konačna arhitektura](https://i.imgur.com/VHSxCCO.png)
